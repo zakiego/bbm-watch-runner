@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Fuels {
+  id        Int       @id @default(autoincrement())
+  type      FuelType
+  dateText  String
+  date      DateTime
+  cityId    String
+  city      City      @relation(fields: [cityId], references: [id])
+  price     Int
+  priceText String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@unique([type, cityId, date])
+  @@index([type, cityId, date], name: "type_cityId_date")
+}
+
+enum FuelType {
+  Pertamax_Turbo
+  Pertamax
+  Pertalite
+  Pertamax_Dex
+  Dexlite
+  Bio_Solar
+}
+
+model City {
+  id    String  @id
+  Fuels Fuels[]
+}

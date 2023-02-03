@@ -1,46 +1,24 @@
-import { FuelType } from "@prisma/client";
-import { City } from "./types";
+import prisma from "../../src/lib/prisma";
+import { logger } from "../../src/utils/logger";
 
-interface ListFuels {
-  image: string;
-  name: FuelType;
-}
+const main = async () => {
+  logger.info("[+] Seeding database city");
 
-export const LIST_FUELS: ListFuels[] = [
-  {
-    image: "https://mypertamina.id/assets/img/products/turbo.png",
-    name: "Pertamax_Turbo",
-  },
-  {
-    image: "https://mypertamina.id/assets/img/products/1.png",
-    name: "Pertamax",
-  },
-  {
-    image: "https://mypertamina.id/assets/img/products/lite.png",
-    name: "Pertalite",
-  },
-  {
-    image: "https://mypertamina.id/assets/img/products/dex.png",
-    name: "Pertamax_Dex",
-  },
-  {
-    image: "https://mypertamina.id/assets/img/products/dexlite.png",
-    name: "Dexlite",
-  },
-  {
-    image: "https://mypertamina.id/assets/img/products/bio-solar.png",
-    name: "Bio_Solar",
-  },
-];
+  const data = await prisma.city.createMany({
+    data: listCity.map((d) => ({
+      id: d.plainCity,
+    })),
+    skipDuplicates: true,
+  });
 
-const LIST_CITY_TYPO: City[] = [
-  {
-    plainCity: "aProv. Sulawesi Selatan",
-    parseCity: "Prov. Sulawesi Selatan",
-  },
-];
+  if (data.count) {
+    logger.info(`[+] Inserted ${data.count} new data`);
+  } else {
+    logger.warn(`[-] No new data`);
+  }
+};
 
-export const LIST_CITY: City[] = [
+const listCity = [
   { plainCity: "Free Trade Zone (FTZ) Sabang" },
   { plainCity: "Kodya Batam (FTZ)" },
   { plainCity: "Prov. Bali" },
@@ -77,5 +55,6 @@ export const LIST_CITY: City[] = [
   { plainCity: "Prov. Sumatera Barat" },
   { plainCity: "Prov. Sumatera Selatan" },
   { plainCity: "Prov. Sumatera Utara" },
-  ...LIST_CITY_TYPO,
 ];
+
+main();

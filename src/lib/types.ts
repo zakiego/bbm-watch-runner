@@ -1,5 +1,7 @@
+import { FuelType } from "@prisma/client";
+
 export interface Fuels {
-  type: string;
+  type: FuelType;
   date: string;
   dateText: string;
   city: string;

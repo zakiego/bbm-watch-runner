@@ -5,6 +5,7 @@ import { formatPrice } from "./number";
 import { Fuels } from "../lib/types";
 import { parseCity } from "./city";
 import { parseDate } from "./date";
+import { FuelType } from "@prisma/client";
 
 export const parseRaw = (raw: string) => {
   logger.info("[+] Parsing data from mypertamina.id");
@@ -65,7 +66,7 @@ const ParsePriceContainer = (
   $: Cheerio.CheerioAPI,
   priceContainer: Cheerio.Cheerio<Cheerio.Element>,
   bucket: Fuels[] = [],
-  type: string,
+  type: FuelType,
   date: string,
 ) => {
   const label = priceContainer.find("label");
