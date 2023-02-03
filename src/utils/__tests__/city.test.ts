@@ -12,6 +12,8 @@ describe("parseCity", () => {
   });
 
   it("should error if input typo not expected", () => {
-    expect(() => parseCity("aProv. Sulawesi Selatan 2")).toThrow();
+    expect(() =>
+      parseCity("axxwProv. Sulawesi Selatan should be error"),
+    ).toThrow();
   });
 });
