@@ -1,21 +1,3 @@
-# TypeScript Node Starter
+# BBM Watch Runner
 
-1. Install dependencies
-
-   ```bash
-   pnpm install
-
-   # or
-
-   yarn install
-   ```
-
-2. Run
-
-   ```bash
-   pnpm start
-
-   # or
-
-   yarn start
-   ```
+[![Runner](https://github.com/zakiego/bbm-watch-runner/actions/workflows/runner.yml/badge.svg)](https://github.com/zakiego/bbm-watch-runner/actions/workflows/runner.yml)
