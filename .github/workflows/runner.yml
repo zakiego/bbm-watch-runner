@@ -26,5 +26,7 @@ jobs:
 
       - name: Run Start
         uses: borales/actions-yarn@v4
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         with:
           cmd: start
