@@ -1,8 +1,9 @@
 name: Runner
 
 on:
-  schedule:
-    - cron: "0 0 * * *" #run every at 00:00:00s UTC / 08.00 GMT +7 / 09.00 GMT +8
+  push
+  # schedule:
+  #   - cron: "0 0 * * *" #run every at 00:00:00s UTC / 08.00 GMT +7 / 09.00 GMT +8
 
 jobs:
   build:
@@ -30,5 +31,7 @@ jobs:
         uses: borales/actions-yarn@v4
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          TELEGRAM_BOT_TOKEN: ${{TELEGRAM_BOT_TOKEN}}
+          TELEGRAM_BOT_CHAT_ID: ${{TELEGRAM_BOT_CHAT_ID}}
         with:
           cmd: start
