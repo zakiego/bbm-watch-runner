@@ -31,7 +31,7 @@ jobs:
         uses: borales/actions-yarn@v4
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          TELEGRAM_BOT_TOKEN: ${{TELEGRAM_BOT_TOKEN}}
-          TELEGRAM_BOT_CHAT_ID: ${{TELEGRAM_BOT_CHAT_ID}}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_CHAT_ID: ${{ secrets.TELEGRAM_BOT_CHAT_ID }}
         with:
           cmd: start
