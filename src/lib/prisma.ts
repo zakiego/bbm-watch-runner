@@ -7,7 +7,7 @@ prisma.$use(async (params, next) => {
   const result = await next(params);
 
   if (params.model === "Fuels" && params.action === "createMany") {
-    if (result.count === 0) {
+    if (result.count > 0) {
       await sendMessage(`New fuel data: ${result.count} records`);
     }
   }
